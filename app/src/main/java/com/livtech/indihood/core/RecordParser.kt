@@ -7,16 +7,23 @@ import com.livtech.indihood.core.models.SectionItem
 
 class RecordParser(val schema: String?, val records: String?) {
 
-    fun parseData(): ContentDetail {
+    fun parseLoanDetail(): ContentDetail {
         val contentItems = ArrayList<ContentItem>().apply {
             add(ContentItem("Name", "Bimala Devi"))
+            add(ContentItem())
             add(ContentItem("Date of Birth", "10th May 1959"))
             add(ContentItem("Phone Number", "9999987654"))
-            add(ContentItem("Marital Status", "Married"))
-            add(ContentItem("No of Dependents", "3"))
         }
         val sectionItems = ArrayList<SectionItem>().apply {
-            add(SectionItem("loan_applicant_type", "Applicant Details", contentItems, true))
+            add(
+                SectionItem(
+                    "loan_applicant_type",
+                    "Applicant Details",
+                    contentItems,
+                    true,
+                    "SEE MORE"
+                )
+            )
         }
         val address = Address(
             29.9230305,

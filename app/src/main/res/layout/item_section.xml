@@ -36,6 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sectionTitleText" />
 
         <TextView
@@ -43,13 +44,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="?selectableItemBackground"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="8dp"
+            android:padding="16dp"
             android:text="@{sectionItem.moreText}"
+            android:textAllCaps="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
             app:goneVisible="@{sectionItem.showMore}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sectionRecyclerView"
+            app:layout_constraintTop_toBottomOf="@+id/contentRecyclerView"
             tools:text="SEE MORE" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

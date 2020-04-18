@@ -8,36 +8,33 @@
             type="com.livtech.indihood.core.models.ContentItem" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="16dp">
 
         <TextView
             android:id="@+id/itemNameText"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:singleLine="true"
             android:text="@{contentItem.itemName}"
             android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             tools:text="Name" />
 
         <TextView
             android:id="@+id/itemValueText"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:singleLine="true"
             android:text="@{contentItem.itemValue}"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/itemNameText"
-            app:layout_constraintTop_toBottomOf="@+id/itemNameText"
             tools:text="Bimla Devi" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>

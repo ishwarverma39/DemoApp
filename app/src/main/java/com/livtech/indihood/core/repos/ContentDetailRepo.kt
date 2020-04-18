@@ -27,7 +27,7 @@ class ContentDetailRepo(scope: CoroutineScope, dispatcher: CoroutineDispatcher) 
                         contentDetail = RecordParser(
                             schemaRes.body(),
                             recordRes.body()
-                        ).parseData()
+                        ).parseLoanDetail()
                         emit(
                             Resource.Success(
                                 contentDetail
