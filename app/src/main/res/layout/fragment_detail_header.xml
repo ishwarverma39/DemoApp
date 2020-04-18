@@ -12,8 +12,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/background">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/typeImageView"
@@ -35,8 +34,16 @@
             android:layout_marginStart="16dp"
             android:background="@drawable/map_container_background"
             android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@+id/blankView"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <View
+            android:id="@+id/blankView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageLabelText" />
+            app:layout_constraintTop_toBottomOf="@+id/typeImageView" />
 
 
         <TextView

@@ -32,4 +32,8 @@ abstract class BaseFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initViews(view, savedInstanceState)
     }
+
+    open fun onBackPress(view: View) {
+        activity?.finish()
+    }
 }

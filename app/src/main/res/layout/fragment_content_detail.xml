@@ -13,17 +13,18 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/background"
         tools:ignore="MergeRootFrame">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/app_bar"
+            android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/detail_toolbar"
+                android:id="@+id/detailToolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
@@ -33,7 +34,7 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.core.widget.NestedScrollView
-            android:id="@+id/item_detail_container"
+            android:id="@+id/detailScrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -42,6 +43,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
+                <ProgressBar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:goneVisible="@{detailViewModel.showLoading}" />
 
                 <FrameLayout
                     android:id="@+id/detailHeaderContainer"
@@ -52,6 +58,7 @@
                     android:id="@+id/sectionListContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
+
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
