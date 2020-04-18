@@ -47,6 +47,7 @@ class ContentDetailFragment : BaseFragment() {
         detailToolbar.setNavigationOnClickListener { v -> onBackPress(v) }
         initSectionItemViews()
         initHeaderFragment()
+        detailViewModel?.fetchContentDetail()
     }
 
     private fun initSectionItemViews() {
