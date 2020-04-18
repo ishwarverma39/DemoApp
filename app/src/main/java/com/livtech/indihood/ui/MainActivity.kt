@@ -1,7 +1,8 @@
-package com.livtech.indihood
+package com.livtech.indihood.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.livtech.indihood.R
 
 class MainActivity : AppCompatActivity() {
 
