@@ -59,6 +59,8 @@ dependencies {
     implementation deps.moshi_ktl
     implementation deps.moshi_ktl_codegen
     implementation deps.coroutine_arc_nbr
+    implementation deps.glide.runtime
+    implementation deps.glide.compiler
 
     testImplementation deps.junit
     testImplementation deps.arch_core.testing
