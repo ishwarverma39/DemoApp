@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Indihood</string>
+    <string name="app_name">DemoApp</string>
+    <string name="google_maps_key">AIzaSyCWSein0ZPPjXCiGpbCHO0yf343SYFMNn0</string>
 </resources>

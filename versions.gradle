@@ -22,7 +22,7 @@
 ext.deps = [:]
 def versions = [:]
 versions.activity = '1.1.0'
-versions.android_gradle_plugin = '3.6.2'
+versions.android_gradle_plugin = '4.0.0'
 versions.annotations = "1.0.0"
 versions.apache_commons = "2.5"
 versions.appcompat = "1.2.0-alpha02"
@@ -44,7 +44,7 @@ versions.glide = "4.8.0"
 versions.json = "2.8.6"
 versions.hamcrest = "1.3"
 versions.junit = "4.12"
-versions.kotlin = "1.3.70"
+versions.kotlin = "1.3.71"
 versions.lifecycle = "2.2.0"
 versions.material = "1.0.0"
 versions.mockito = "2.25.0"
@@ -226,7 +226,7 @@ work.firebase = "androidx.work:work-firebase:$versions.work"
 work.runtime_ktx = "androidx.work:work-runtime-ktx:$versions.work"
 deps.work = work
 
-deps.coroutine_arc_nbr =  "com.github.ishwarverma39:coroutine-app-architecture-NBR:v1.0.8"
+deps.coroutine_arc_nbr =  "com.github.ishwarverma39:coroutine-app-architecture-NBR:v1.0.9"
 
 ext.deps = deps
 
