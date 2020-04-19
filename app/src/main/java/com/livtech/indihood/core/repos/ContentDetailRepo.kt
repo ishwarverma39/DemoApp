@@ -14,20 +14,22 @@ import kotlinx.coroutines.CoroutineScope
 class ContentDetailRepo(scope: CoroutineScope, dispatcher: CoroutineDispatcher) :
     BaseRepo(scope, dispatcher) {
 
-    fun getContentDetail(schemaUrl: String, recordUrl :String): LiveData<Resource<ContentDetail>> {
+    fun getContentDetail(schemaUrl: String, recordUrl: String): LiveData<Resource<ContentDetail>> {
         return liveData(scope.coroutineContext + dispatcher)
         {
             var contentDetail: ContentDetail? = null
             emit(Resource.Loading(contentDetail))
             try {
-                val schemaRes = apiService(IndihoodApiServices::class.java).getSchema(schemaUrl).await()
-                val recordRes = apiService(IndihoodApiServices::class.java).getRecords(recordUrl).await()
+                val schemaRes =
+                    apiService(IndihoodApiServices::class.java).getSchema(schemaUrl).await()
+                val recordRes =
+                    apiService(IndihoodApiServices::class.java).getRecords(recordUrl).await()
                 when (true) {
                     schemaRes.isSuccessful && recordRes.isSuccessful -> {
                         contentDetail = RecordParser(
-                            schemaRes.body(),
-                            recordRes.body()
-                        ).parseLoanDetail()
+                            schemaRes.body()!!,
+                            recordRes.body()!!
+                        ).parseDetail()
                         emit(
                             Resource.Success(
                                 contentDetail

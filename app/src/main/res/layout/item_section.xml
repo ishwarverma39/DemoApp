@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@{sectionItem.title}"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,22 +35,24 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/viewMoreText"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sectionTitleText" />
 
         <TextView
             android:id="@+id/viewMoreText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="?selectableItemBackground"
-            android:padding="16dp"
+            android:layout_marginBottom="16dp"
+            android:paddingHorizontal="16dp"
             android:text="@{sectionItem.moreText}"
             android:textAllCaps="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
             app:goneVisible="@{sectionItem.showMore}"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/contentRecyclerView"
             tools:text="SEE MORE" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

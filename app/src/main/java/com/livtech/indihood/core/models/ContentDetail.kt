@@ -1,9 +1,9 @@
 package com.livtech.indihood.core.models
 
 class ContentDetail(
-    val title: String,
-    val imageUrl: String,
-    val imageLabel: String,
-    val address: Address,
-    val sections: ArrayList<SectionItem>
+    var title: String,
+    var imageUrl: String,
+    var imageLabel: String,
+    var address: Address?,
+    var sections: ArrayList<SectionItem>?
 )
