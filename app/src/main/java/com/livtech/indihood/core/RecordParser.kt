@@ -92,7 +92,14 @@ class RecordParser(private val schema: String, private val records: String) {
                 )
             }
         }
-        return SectionItem(type, sectionKey, contents)
+        return SectionItem(type, sectionKey, contents).also {
+            if (it.items.size > 6) {
+                it.showMore = true
+                it.moreText = "SEE MORE"
+                it.showList = ArrayList(it.items.subList(0, 6))
+            } else it.showList = it.items
+        }
+
     }
 
     private fun getContentsForCustomSchema(
@@ -109,8 +116,16 @@ class RecordParser(private val schema: String, private val records: String) {
             while (!jsonArray.isNull(i)) {
                 sectionSchema.keys().forEach {
                     if (!it.equals("type", true)) {
-                        val isList = sectionSchema.getJSONObject(it).getString("num").contains("+")
-                        contentItems.add(getContentItem(it, jsonArray.getJSONObject(i), it, isList))
+                        val isMultiple =
+                            sectionSchema.getJSONObject(it).getString("num").contains("+")
+                        contentItems.add(
+                            getContentItem(
+                                it,
+                                jsonArray.getJSONObject(i),
+                                it,
+                                isMultiple
+                            )
+                        )
                     }
                 }
                 i++
