@@ -13,7 +13,4 @@ class SectionItem(
     override fun getItemType(): Int {
         return AppConstants.ITEM_TYPE_SECTION
     }
-
-    val showMaxList: ArrayList<ContentItem>
-        get() = showList
 }

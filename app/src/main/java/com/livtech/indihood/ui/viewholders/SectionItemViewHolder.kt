@@ -32,7 +32,7 @@ class SectionItemViewHolder(itemView: View, private val itemSectionBinding: Item
         itemSectionBinding.sectionItem = item
         contentItems.apply {
             clear()
-            addAll(item.showMaxList)
+            addAll(item.showList)
         }
         adapter.notifyDataSetChanged()
     }

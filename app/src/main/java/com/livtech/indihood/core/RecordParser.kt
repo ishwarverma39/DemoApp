@@ -40,6 +40,13 @@ class RecordParser(private val schema: String, private val records: String) {
                     }
                     else -> {
                         val sectionItem = getSectionItem(sectionKey, type, key)
+                        sectionItem.also {
+                            if (it.items.size > 6) {
+                                it.showMore = true
+                                it.moreText = "SEE MORE"
+                                it.showList = ArrayList(it.items.subList(0, 6))
+                            } else it.showList = it.items
+                        }
                         sections.add(sectionItem)
                     }
                 }
@@ -56,7 +63,7 @@ class RecordParser(private val schema: String, private val records: String) {
      */
     private fun getContentItem(
         typeKey: String,
-        contentObject: JSONObject?, type: String, isList: Boolean
+        contentObject: JSONObject?, isList: Boolean
     ): ContentItem {
         return ContentItem(typeKey).apply {
             if (isList) this.itemValue = contentObject?.optJSONArray(typeKey)?.join(",")
@@ -77,7 +84,7 @@ class RecordParser(private val schema: String, private val records: String) {
                     getContentItem(
                         sectionKey,
                         recordObject.getJSONObject(sectionKey),
-                        sectionType, sectionDetail.getString("num").contains("+")
+                        sectionDetail.getString("num").contains("+")
                     )
                 )
             }
@@ -92,14 +99,7 @@ class RecordParser(private val schema: String, private val records: String) {
                 )
             }
         }
-        return SectionItem(type, sectionKey, contents).also {
-            if (it.items.size > 6) {
-                it.showMore = true
-                it.moreText = "SEE MORE"
-                it.showList = ArrayList(it.items.subList(0, 6))
-            } else it.showList = it.items
-        }
-
+        return SectionItem(type, sectionKey, contents)
     }
 
     private fun getContentsForCustomSchema(
@@ -122,7 +122,6 @@ class RecordParser(private val schema: String, private val records: String) {
                             getContentItem(
                                 it,
                                 jsonArray.getJSONObject(i),
-                                it,
                                 isMultiple
                             )
                         )
@@ -131,7 +130,18 @@ class RecordParser(private val schema: String, private val records: String) {
                 i++
             }
         } else {
-
+            sectionSchema.keys().forEach { key ->
+                if (!key.equals("type", false)) {
+                    val isMultiple = sectionSchema.getJSONObject(key).getString("num").contains("+")
+                    contentItems.add(
+                        getContentItem(
+                            key,
+                            recordObject.getJSONObject(mainKey).getJSONObject(sectionKey),
+                            isMultiple
+                        )
+                    )
+                }
+            }
         }
         return contentItems
     }
@@ -142,41 +152,4 @@ class RecordParser(private val schema: String, private val records: String) {
             else -> false
         }
     }
-
-    private fun isList(type: String): Boolean {
-        return schemaObject.getJSONObject(type).getString("num").contains("+")
-    }
-
-    fun parseLoanDetail(): ContentDetail {
-        val contentItems = ArrayList<ContentItem>().apply {
-            add(ContentItem("Name", "Bimala Devi"))
-            add(ContentItem())
-            add(ContentItem("Date of Birth", "10th May 1959"))
-            add(ContentItem("Phone Number", "9999987654"))
-        }
-        val sectionItems = ArrayList<SectionItem>().apply {
-            add(
-                SectionItem(
-                    "loan_applicant_type",
-                    "Applicant Details",
-                    contentItems,
-                    true,
-                    "SEE MORE"
-                )
-            )
-        }
-        val address = Address(
-            29.9230305,
-            78.1287824,
-            "105/9 Arihant Vihar, Near Uttarakhand Public Service Commission, Haridwar, Uttarakhand"
-        )
-        return ContentDetail(
-            "Bimala Devi’s Shed Construction Loan",
-            "https://lh3.googleusercontent.com/4jdIr7IAp3DVx_Ss_JKAc4aKuWo5KRMUNGkhP-J60kvQ6R-zR1Tt9LbPhVASEO3iasx2X9SgmGZzmk1SDPE7vSz9hMLT",
-            "Bimala Devi (Female,47)",
-            address,
-            sectionItems
-        )
-    }
-
 }
