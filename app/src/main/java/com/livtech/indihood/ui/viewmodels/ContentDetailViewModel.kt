@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.livtech.common.core.models.Resource
 import com.livtech.common.core.utils.DefaultDispatcherProvider
 import com.livtech.indihood.core.AppConstants
+import com.livtech.indihood.core.models.Address
 import com.livtech.indihood.core.models.SectionItem
 import com.livtech.indihood.core.repos.ContentDetailRepo
 
@@ -16,9 +17,10 @@ class ContentDetailViewModel : ViewModel() {
     val titleText = ObservableField("")
     val addressText = ObservableField("")
     val showLoading = ObservableField(false)
-
     val sectionItemsData = MutableLiveData<ArrayList<SectionItem>>()
-    private val contentDetailRepo = ContentDetailRepo(viewModelScope, DefaultDispatcherProvider().io())
+    val addressData = MutableLiveData<Address>()
+    private val contentDetailRepo =
+        ContentDetailRepo(viewModelScope, DefaultDispatcherProvider().io())
 
     fun fetchContentDetail() {
         contentDetailRepo.getContentDetail(AppConstants.SCHEMA_URL, AppConstants.RECORDS_URL)
@@ -34,6 +36,7 @@ class ContentDetailViewModel : ViewModel() {
                         imageUrl.set(it.data?.imageUrl)
                         titleText.set(it.data?.title)
                         addressText.set(it.data?.address?.address)
+                        addressData.value = it.data?.address
                     }
                     else -> {
                         showLoading.set(false)

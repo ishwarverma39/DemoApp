@@ -72,6 +72,9 @@ dependencies {
     testImplementation deps.arch_core.testing
     testImplementation deps.coroutines.test
 
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+
+
 
     androidTestImplementation deps.atsl.runner
     androidTestImplementation deps.atsl.rules
@@ -83,4 +86,5 @@ dependencies {
     annotationProcessor 'org.jetbrains.kotlin:kotlin-compiler-embeddable:1.2.71'
     annotationProcessor 'com.squareup.moshi:moshi-kotlin-codegen:1.8.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+
 }
