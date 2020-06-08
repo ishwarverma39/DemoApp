@@ -1,4 +1,4 @@
-package com.livtech.indihood.ui
+package com.livtech.demo.ui
 
 import android.view.View
 import android.widget.ImageView

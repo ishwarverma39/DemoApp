@@ -1,4 +1,4 @@
-package com.livtech.indihood.core.apiservices
+package com.livtech.demo.core
 
 import okhttp3.Interceptor
 

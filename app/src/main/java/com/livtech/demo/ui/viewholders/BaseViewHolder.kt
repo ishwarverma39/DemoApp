@@ -1,4 +1,4 @@
-package com.livtech.indihood.ui.viewholders
+package com.livtech.demo.ui.viewholders
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

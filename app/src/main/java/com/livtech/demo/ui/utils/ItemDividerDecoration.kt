@@ -1,4 +1,4 @@
-package com.livtech.indihood.ui.utils
+package com.livtech.demo.ui.utils
 
 import android.graphics.Rect
 import android.view.View
@@ -11,8 +11,9 @@ class ItemDividerDecoration(private val dividerSize: Int) :
         outRect: Rect, view: View, parent: RecyclerView,
         state: RecyclerView.State
     ) {
-        if (parent.getChildAdapterPosition(view) != parent.adapter!!.itemCount - 1) {
-            outRect.right = dividerSize
+        parent.adapter?.let {
+            if (it.itemCount - 1 != parent.getChildAdapterPosition(view))
+                outRect.right = dividerSize
         }
     }
 }

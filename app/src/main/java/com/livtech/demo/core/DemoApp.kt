@@ -1,8 +1,7 @@
-package com.livtech.indihood.core
+package com.livtech.demo.core
 
 import android.app.Application
 import com.livtech.common.core.network.ApiClient
-import com.livtech.indihood.core.apiservices.ApiAuthenticator
 
 class DemoApp : Application() {
     override fun onCreate() {

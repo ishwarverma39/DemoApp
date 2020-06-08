@@ -1,6 +1,5 @@
-package com.livtech.indihood
+package com.livtech.demo
 
-import com.livtech.indihood.core.RecordParser
 import org.junit.Test
 
 class RecordParsingTest {

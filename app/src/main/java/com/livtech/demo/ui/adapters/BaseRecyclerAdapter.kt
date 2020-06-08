@@ -1,10 +1,11 @@
-package com.livtech.indihood.ui.adapters
+package com.livtech.demo.ui.adapters
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.livtech.indihood.ui.viewholders.BaseViewHolder
+import com.livtech.demo.core.models.BaseItem
+import com.livtech.demo.ui.viewholders.BaseViewHolder
 
-abstract class BaseRecyclerAdapter<T : Any, ViewHolder : BaseViewHolder<T>>(val items: List<T>) : RecyclerView.Adapter<ViewHolder>() {
+abstract class BaseRecyclerAdapter<T : BaseItem, ViewHolder : BaseViewHolder<T>>(val items: List<T>) : RecyclerView.Adapter<ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return getViewHolder(parent, viewType)
