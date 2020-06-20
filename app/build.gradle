@@ -16,6 +16,11 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
 
     buildTypes {
@@ -63,6 +68,8 @@ dependencies {
     implementation deps.activity.activity_ktx
     implementation deps.constraint_layout
     implementation deps.kotlin.stdlib
+    implementation deps.kotlin.reflect
+    annotationProcessor deps.kotlin.compiler
     implementation deps.recyclerview
     implementation deps.cardview
     implementation deps.moshi_ktl
@@ -91,11 +98,10 @@ dependencies {
     androidTestImplementation deps.espresso.contrib
     androidTestImplementation deps.arch_core.testing
 
-    annotationProcessor 'org.jetbrains.kotlin:kotlin-compiler-embeddable:1.3.72'
     annotationProcessor 'com.squareup.moshi:moshi-kotlin-codegen:1.8.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
 
     implementation deps.room.runtime
-    implementation deps.room.compiler
-    implementation deps.room.testing
+    annotationProcessor deps.room.compiler
+    androidTestImplementation deps.room.testing
 }
