@@ -2,33 +2,29 @@ package com.livtech.demo.core.base
 
 import android.os.Handler
 import android.os.Looper
-import org.jetbrains.kotlin.javax.inject.Inject
-import org.jetbrains.kotlin.javax.inject.Singleton
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
-@Singleton
-open class AppExecutors(
-    private val diskIO: Executor,
-    private val networkIO: Executor,
+object AppExecutors {
+    private val diskIO: Executor
+    private val networkIO: Executor
     private val mainThread: Executor
-) {
 
-    @Inject
-    constructor() : this(
-        Executors.newSingleThreadExecutor(),
-        Executors.newFixedThreadPool(3),
-        MainThreadExecutor()
-    )
 
+    init {
+        diskIO = Executors.newSingleThreadExecutor()
+        networkIO = Executors.newFixedThreadPool(3)
+        mainThread = MainThreadExecutor()
+    }
+    @JvmStatic
     fun diskIO(): Executor {
         return diskIO
     }
-
+    @JvmStatic
     fun networkIO(): Executor {
         return networkIO
     }
-
+    @JvmStatic
     fun mainThread(): Executor {
         return mainThread
     }
