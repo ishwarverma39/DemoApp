@@ -35,8 +35,24 @@ class MovieRepo(val movieDao: MovieDao, val dispatcher: CoroutineDispatcher) : B
         }.asLiveData
     }
 
-    fun fetchBookmarkedMovies(bookmarked: Boolean): LiveData<List<TmdbMovie>> {
-        return movieDao.getMoviesByBookmark(bookmarked = bookmarked)
+    fun fetchBookmarkedMovies(bookmarked: Boolean): LiveData<Resource<MutableList<TmdbMovie>?>> {
+        return object : NetworkBoundResource<MutableList<TmdbMovie>, TmdbMovieListResponse>(
+            shouldLoad = false,
+            dispatcher = dispatcher
+        ) {
+            override suspend fun saveApiCallResponse(response: TmdbMovieListResponse?) {
+                //not need to save anything
+            }
+
+            override fun getRequestAsync(): Deferred<Response<TmdbMovieListResponse>> {
+                return apiService(TmdbApi::class.java).getPopularMovieAsync()
+            }
+
+            override fun loadFromDb(): LiveData<MutableList<TmdbMovie>> {
+                return movieDao.getMoviesByBookmark(bookmarked)
+            }
+
+        }.asLiveData
     }
 
     fun getMovieIdDetail(movieId: Int): LiveData<Resource<TmdbMovie?>> {

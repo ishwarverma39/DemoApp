@@ -20,7 +20,7 @@ interface MovieDao {
     fun updateBookmark(id: Int, bookmarked: Boolean)
 
     @Query("select * from movies where bookmarked=:bookmarked")
-    fun getMoviesByBookmark(bookmarked: Boolean): LiveData<List<TmdbMovie>>
+    fun getMoviesByBookmark(bookmarked: Boolean): LiveData<MutableList<TmdbMovie>>
 
     @Query("update movies set `movieIdDetail` =:movieIdDetail where `id`=:id")
     fun updateMovieIdDetail(movieIdDetail: MovieIdDetail, id: Int)

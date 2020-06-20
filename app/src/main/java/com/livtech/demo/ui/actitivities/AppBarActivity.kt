@@ -23,6 +23,9 @@ abstract class AppBarActivity : BaseActivity() {
             it.setNavigationIcon(R.drawable.ic_action_back)
             it.setNavigationOnClickListener { onBackArrowPress() }
         }
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_action_back)
     }
 
     open fun onBackArrowPress() {
