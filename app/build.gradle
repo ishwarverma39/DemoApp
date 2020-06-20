@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.github.dcendents.android-maven'
 
 android {
     compileSdkVersion build_versions.compile_sdk
@@ -11,8 +12,6 @@ android {
         applicationId "com.livtech.demo"
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
-        versionCode 1
-        versionName "1.0"
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -104,4 +103,10 @@ dependencies {
     implementation deps.room.runtime
     annotationProcessor deps.room.compiler
     androidTestImplementation deps.room.testing
+    def room_version = "2.2.5"
+    implementation "androidx.room:room-ktx:$room_version"
+    testImplementation "androidx.room:room-testing:$room_version"
+    kapt "android.arch.persistence.room:compiler:1.1.1"
+    implementation "android.arch.persistence.room:runtime:1.1.1"
+
 }

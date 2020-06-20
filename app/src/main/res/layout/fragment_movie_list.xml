@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+
+        <import type="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <variable
+            name="resource"
+            type="com.livtech.common.core.models.Resource" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/movieRecycleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:goneVisible="@{resource.data!=null}"
+            app:layoutManager="LinearLayoutManager" />
+
+        <include
+            layout="@layout/loading_state"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            app:resource="@{resource}" />
+
+    </LinearLayout>
+</layout>

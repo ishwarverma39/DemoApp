@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 
-abstract class BaseFragment(layoutId: Int) : Fragment(layoutId) {
+abstract class BaseFragment<VB : ViewDataBinding>(val layoutId: Int) : Fragment(layoutId) {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -17,13 +19,17 @@ abstract class BaseFragment(layoutId: Int) : Fragment(layoutId) {
         return bindView(inflater, container, savedInstanceState)
     }
 
-    open fun bindView(
+    open fun  bindView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
+        val binding = DataBindingUtil.inflate<VB>(inflater, layoutId, container, false)
+        bindView(binding)
+        return binding.root
     }
+
+    open fun bindView(viewDataBinding: VB) {}
 
     abstract fun initViewModels()
 

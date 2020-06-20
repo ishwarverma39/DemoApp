@@ -1,15 +1,17 @@
-package com.example.kotlintest.core.database
+package com.livtech.demo.core.database
 
 import android.content.Context
-import androidx.room.*
-import com.example.kotlintest.core.TmdbMovie
-import com.livtech.demo.core.database.ModelTypeConverter
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.livtech.demo.core.models.TmdbMovie
 
-const val DB_NAME = "todo_database"
+const val DB_NAME = "embibe_db"
 const val DB_VERSION = 1
 
 @Database(
-    entities = arrayOf(TmdbMovie::class),
+    entities = [TmdbMovie::class],
     version = DB_VERSION,
     exportSchema = false
 )
@@ -22,22 +24,17 @@ abstract class AppDatabase : RoomDatabase() {
         @Volatile
         var INSTANCE: AppDatabase? = null
 
-        fun get(context: Context): AppDatabase {
+        fun init(context: Context) {
             val tempInstance = INSTANCE
             if (tempInstance != null) {
-                return tempInstance
+                return
             }
             synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    AppDatabase::class.java,
-                    DB_NAME
-                ).build()
+                val instance =
+                    Room.databaseBuilder(context, AppDatabase::class.java, DB_NAME).build()
                 INSTANCE = instance
-                return instance
             }
         }
-
     }
 }
 

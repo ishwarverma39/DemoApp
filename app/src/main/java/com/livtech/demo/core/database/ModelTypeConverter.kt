@@ -8,8 +8,13 @@ import java.lang.reflect.Type
 
 class ModelTypeConverter {
     @TypeConverter
-    fun stringMovieIdDetail(data: String): MovieIdDetail {
-        val listType: Type = object : TypeToken<MovieIdDetail>() {}.type
-        return Gson().fromJson(data, listType)
+    fun stringToMovieIdDetail(data: String): MovieIdDetail? {
+        val type: Type = object : TypeToken<MovieIdDetail?>() {}.type
+        return Gson().fromJson(data, type)
+    }
+
+    @TypeConverter
+    fun someMovieIdDetailToString(movieIdDetail: MovieIdDetail?): String? {
+        return Gson().toJson(movieIdDetail)
     }
 }

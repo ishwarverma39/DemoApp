@@ -1,6 +1,7 @@
 package com.livtech.demo.ui.actitivities
 
 import com.livtech.demo.R
+import com.livtech.demo.ui.fragments.MovieListFragment
 
 class MainActivity : AppBarActivity() {
     override fun getTitleText(): String {
@@ -12,6 +13,8 @@ class MainActivity : AppBarActivity() {
     }
 
     override fun initViews() {
+        val fragment = MovieListFragment(R.layout.fragment_movie_list)
+        setFragment(fragment, "Movie")
     }
 
     override fun getMainContainerId(): Int {

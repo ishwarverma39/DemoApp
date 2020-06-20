@@ -1,4 +1,4 @@
-package com.example.kotlintest.core
+package com.livtech.demo.core.base
 
 import com.livtech.demo.BuildConfig
 

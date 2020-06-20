@@ -1,10 +1,9 @@
-package com.example.kotlintest.core
+package com.livtech.demo.core.models
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.livtech.demo.core.models.MovieIdDetail
 import kotlinx.android.parcel.Parcelize
 
 @Entity(tableName = "movies")
@@ -16,7 +15,7 @@ data class TmdbMovie(
     val title: String,
     val overview: String,
     val adult: Boolean,
-    @ColumnInfo(defaultValue = "0")
+    @ColumnInfo(name = "bookmarked", defaultValue = "0")
     var bookmarked: Boolean,
     var movieIdDetail: MovieIdDetail?
 ) : Parcelable
