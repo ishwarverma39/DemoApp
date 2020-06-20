@@ -13,7 +13,7 @@ class ItemDividerDecoration(private val dividerSize: Int) :
     ) {
         parent.adapter?.let {
             if (it.itemCount - 1 != parent.getChildAdapterPosition(view))
-                outRect.right = dividerSize
+                outRect.bottom = dividerSize
         }
     }
 }
