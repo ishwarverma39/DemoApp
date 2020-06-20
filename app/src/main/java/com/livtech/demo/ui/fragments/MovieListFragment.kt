@@ -54,5 +54,6 @@ class MovieListFragment(layoutId: Int) : BaseFragment<FragmentMovieListBinding>(
     private fun onBookMarkClick(tmdbMovie: TmdbMovie, position: Int) {
         tmdbMovie.bookmarked = !tmdbMovie.bookmarked
         movieListAdapter.notifyItemChanged(position)
+        movieListViewModel.onBookMarkClick(tmdbMovie)
     }
 }

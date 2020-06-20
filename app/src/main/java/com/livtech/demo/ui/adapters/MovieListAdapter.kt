@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.DiffUtil
 import com.livtech.demo.R
 import com.livtech.demo.core.models.TmdbMovie
 import com.livtech.demo.databinding.ListItemMovieBinding
-import com.livtech.demo.ui.viewholders.DataBoundViewHolder
 
 class MovieListAdapter(
     private val onMovieClick: ((TmdbMovie) -> Unit)?,
@@ -20,7 +19,10 @@ class MovieListAdapter(
             }
 
             override fun areContentsTheSame(oldItem: TmdbMovie, newItem: TmdbMovie): Boolean {
-                return oldItem.overview.equals(newItem.overview, false)
+                return oldItem.overview.equals(
+                    newItem.overview,
+                    false
+                ) && oldItem.bookmarked == newItem.bookmarked
             }
         }
     ) {
@@ -33,7 +35,7 @@ class MovieListAdapter(
         )
     }
 
-    override fun bind(binding: ListItemMovieBinding, item: TmdbMovie, position : Int) {
+    override fun bind(binding: ListItemMovieBinding, item: TmdbMovie, position: Int) {
         binding.movieItem = item
         binding.root.setOnClickListener { onMovieClick?.invoke(item) }
         binding.bookmarkImageButton.setOnClickListener { onBookMarkClick?.invoke(item, position) }

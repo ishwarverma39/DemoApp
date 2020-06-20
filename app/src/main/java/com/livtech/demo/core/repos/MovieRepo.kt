@@ -1,11 +1,11 @@
 package com.livtech.demo.core.repos
 
 import androidx.lifecycle.LiveData
-import com.livtech.demo.core.apiservices.TmdbApi
-import com.livtech.demo.core.database.MovieDao
 import com.livtech.common.core.models.BaseRepo
 import com.livtech.common.core.models.Resource
 import com.livtech.common.core.network.NetworkBoundResource
+import com.livtech.demo.core.apiservices.TmdbApi
+import com.livtech.demo.core.database.MovieDao
 import com.livtech.demo.core.models.MovieIdDetail
 import com.livtech.demo.core.models.TmdbMovie
 import com.livtech.demo.core.models.TmdbMovieListResponse
@@ -53,5 +53,9 @@ class MovieRepo(val movieDao: MovieDao, val dispatcher: CoroutineDispatcher) : B
                 response?.let { movieDao.updateMovieIdDetail(it, movieId) }
             }
         }.asLiveData
+    }
+
+    fun updateBookmark(tmdbMovie: TmdbMovie) {
+        movieDao.updateBookmark(tmdbMovie.id, tmdbMovie.bookmarked)
     }
 }
