@@ -34,4 +34,8 @@ abstract class AppBarActivity : BaseActivity() {
     open fun getToolBarId(): Int {
         return R.id.toolbar
     }
+
+    override fun getLayoutId(): Int {
+        return R.layout.activity_app_bar
+    }
 }

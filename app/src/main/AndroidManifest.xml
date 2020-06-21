@@ -24,6 +24,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.actitivities.BookmarkedActivity" />
+        <activity android:name=".ui.actitivities.MovieDetailActivity" />
 
     </application>
 

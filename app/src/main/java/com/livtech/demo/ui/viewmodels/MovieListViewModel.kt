@@ -1,4 +1,4 @@
-package com.livtech.demo.ui
+package com.livtech.demo.ui.viewmodels
 
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModel

@@ -40,30 +40,38 @@ class MovieRepo(val movieDao: MovieDao, val dispatcher: CoroutineDispatcher) : B
     }
 
     fun fetchBookmarkedMovies(bookmarked: Boolean): LiveData<Resource<MutableList<TmdbMovie>?>> {
-       return liveData {
-           emitSource(
-               movieDao.getMoviesByBookmark(bookmarked).map {
-                   if (it.isEmpty()){
-                       Resource.Failure(ApiError(AE_404, "No movie bookmarked yet"), null)
-                   }else
-                       Resource.Success(it)
-               }
-           )
-       }
+        return liveData {
+            emitSource(
+                movieDao.getMoviesByBookmark(bookmarked).map {
+                    if (it.isEmpty()) {
+                        Resource.Failure(ApiError(AE_404, "No movie bookmarked yet"), null)
+                    } else
+                        Resource.Success(it)
+                }
+            )
+        }
     }
 
     fun getMovieIdDetail(movieId: Int): LiveData<Resource<TmdbMovie?>> {
+        var idDetail: MovieIdDetail? = null
         return object : NetworkBoundResource<TmdbMovie, MovieIdDetail>() {
             override fun getRequestAsync(): Deferred<Response<MovieIdDetail>> {
                 return apiService(TmdbApi::class.java).getMovieIdDetailsByIdAsync(movieId)
             }
 
             override fun loadFromDb(): LiveData<TmdbMovie> {
-                return movieDao.getMovieById(movieId)
+                return movieDao.getMovieById(movieId).map { movie ->
+                    idDetail = movie.movieIdDetail
+                    movie
+                }
             }
 
             override suspend fun saveApiCallResponse(response: MovieIdDetail?) {
                 response?.let { movieDao.updateMovieIdDetail(it, movieId) }
+            }
+
+            override fun shouldFetch(): Boolean {
+                return idDetail == null
             }
         }.asLiveData
     }
