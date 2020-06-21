@@ -14,15 +14,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.actitivities.MainActivity"
+            android:name=".ui.actitivities.SplashActivity"
             android:hardwareAccelerated="true"
-            android:screenOrientation="userPortrait">
+            android:screenOrientation="userPortrait"
+            android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.actitivities.MainActivity" />
         <activity android:name=".ui.actitivities.BookmarkedActivity" />
         <activity android:name=".ui.actitivities.MovieDetailActivity" />
 
