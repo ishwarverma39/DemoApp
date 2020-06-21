@@ -1,8 +1,12 @@
 package com.livtech.demo.core.repos
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.liveData
+import androidx.lifecycle.map
 import com.livtech.common.core.models.BaseRepo
 import com.livtech.common.core.models.Resource
+import com.livtech.common.core.network.AE_404
+import com.livtech.common.core.network.ApiError
 import com.livtech.common.core.network.NetworkBoundResource
 import com.livtech.demo.core.apiservices.TmdbApi
 import com.livtech.demo.core.database.MovieDao
@@ -36,23 +40,16 @@ class MovieRepo(val movieDao: MovieDao, val dispatcher: CoroutineDispatcher) : B
     }
 
     fun fetchBookmarkedMovies(bookmarked: Boolean): LiveData<Resource<MutableList<TmdbMovie>?>> {
-        return object : NetworkBoundResource<MutableList<TmdbMovie>, TmdbMovieListResponse>(
-            shouldLoad = false,
-            dispatcher = dispatcher
-        ) {
-            override suspend fun saveApiCallResponse(response: TmdbMovieListResponse?) {
-                //not need to save anything
-            }
-
-            override fun getRequestAsync(): Deferred<Response<TmdbMovieListResponse>> {
-                return apiService(TmdbApi::class.java).getPopularMovieAsync()
-            }
-
-            override fun loadFromDb(): LiveData<MutableList<TmdbMovie>> {
-                return movieDao.getMoviesByBookmark(bookmarked)
-            }
-
-        }.asLiveData
+       return liveData {
+           emitSource(
+               movieDao.getMoviesByBookmark(bookmarked).map {
+                   if (it.isEmpty()){
+                       Resource.Failure(ApiError(AE_404, "No movie bookmarked yet"), null)
+                   }else
+                       Resource.Success(it)
+               }
+           )
+       }
     }
 
     fun getMovieIdDetail(movieId: Int): LiveData<Resource<TmdbMovie?>> {
