@@ -14,7 +14,7 @@ class MainActivity : AppBarActivity() {
 
     override fun initViews() {
         super.initViews()
-        val fragment = MovieListFragment(R.layout.fragment_movie_list)
+        val fragment = MovieListFragment()
         setFragment(fragment, "Movie")
     }
 

@@ -12,7 +12,7 @@ class MovieDetailActivity : AppBarActivity() {
     override fun initViews() {
         super.initViews()
         showBackButton()
-        val fragment = MovieDetailFragment(R.layout.fragment_movie_detail)
+        val fragment = MovieDetailFragment()
         fragment.arguments = intent.extras
         setFragment(fragment, "MOVIE_DETAIL")
     }

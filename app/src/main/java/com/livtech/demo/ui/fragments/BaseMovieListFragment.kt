@@ -5,13 +5,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
+import com.livtech.demo.R
 import com.livtech.demo.core.models.TmdbMovie
 import com.livtech.demo.databinding.FragmentMovieListBinding
 import com.livtech.demo.ui.actitivities.MovieDetailActivity
 import com.livtech.demo.ui.adapters.MovieListAdapter
 import com.livtech.demo.ui.viewmodels.MovieListViewModel
 
-open class BaseMovieListFragment(layoutId: Int) : BaseFragment<FragmentMovieListBinding>(layoutId) {
+open class BaseMovieListFragment : BaseFragment<FragmentMovieListBinding>() {
     lateinit var movieListBinding: FragmentMovieListBinding
     open lateinit var movieListViewModel: MovieListViewModel
     open lateinit var movieListAdapter: MovieListAdapter
@@ -47,5 +48,9 @@ open class BaseMovieListFragment(layoutId: Int) : BaseFragment<FragmentMovieList
         tmdbMovie.bookmarked = !tmdbMovie.bookmarked
         movieListAdapter.notifyItemChanged(position)
         movieListViewModel.onBookMarkClick(tmdbMovie)
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_movie_list
     }
 }

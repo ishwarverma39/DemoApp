@@ -44,8 +44,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginBottom="8dp"
-                android:ellipsize="end"
-                android:maxLines="2"
                 android:text="@{movieItem.title}"
                 app:layout_constraintEnd_toStartOf="@+id/bookmarkImageButton"
                 app:layout_constraintStart_toEndOf="@+id/image"
@@ -59,6 +57,7 @@
                 android:layout_marginTop="16dp"
                 android:gravity="bottom"
                 android:text="@{@string/release + movieItem.release_date}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 app:layout_constraintStart_toStartOf="@id/title_text"
                 app:layout_constraintTop_toBottomOf="@+id/title_text"
                 tools:text="Released on: 12/01/2020" />
@@ -69,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:text="@{@string/rating + String.valueOf(movieItem.vote_average)}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 app:layout_constraintBottom_toBottomOf="@id/releaseText"
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:text="Rating: 5.9" />

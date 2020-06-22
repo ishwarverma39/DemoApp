@@ -15,7 +15,7 @@ import com.livtech.demo.databinding.FragmentMovieDetailBinding
 import com.livtech.demo.ui.viewmodels.MovieDetailViewModel
 
 
-class MovieDetailFragment(layoutId: Int) : BaseFragment<FragmentMovieDetailBinding>(layoutId) {
+class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
     private lateinit var movieDetailViewModel: MovieDetailViewModel
     lateinit var fragmentMovieDetailBinding: FragmentMovieDetailBinding
     private var tmdbMovie: TmdbMovie? = null
@@ -49,7 +49,6 @@ class MovieDetailFragment(layoutId: Int) : BaseFragment<FragmentMovieDetailBindi
 
     private fun initWebView() {
         fragmentMovieDetailBinding.webView.let {
-            it.settings.javaScriptEnabled = true
             it.webViewClient = MyWebViewClient()
         }
     }
@@ -62,9 +61,9 @@ class MovieDetailFragment(layoutId: Int) : BaseFragment<FragmentMovieDetailBindi
             return false
         }
 
-        override fun onPageFinished(view: WebView?, url: String?) {
+        override fun onPageCommitVisible(view: WebView?, url: String?) {
+            super.onPageCommitVisible(view, url)
             fragmentMovieDetailBinding.showLoading = false
-            super.onPageFinished(view, url)
         }
     }
 
@@ -107,5 +106,9 @@ class MovieDetailFragment(layoutId: Int) : BaseFragment<FragmentMovieDetailBindi
             if (it.bookmarked) bookmarkMenuItem.setIcon(R.drawable.ic_action_bookmark_activated)
             else bookmarkMenuItem.setIcon(R.drawable.ic_action_bookmark_normal)
         }
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_movie_detail
     }
 }

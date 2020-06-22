@@ -2,7 +2,7 @@ package com.livtech.demo.ui.fragments
 
 import androidx.lifecycle.Observer
 
-class BookmarkedMovieListFragment(layoutId: Int) : BaseMovieListFragment(layoutId) {
+class BookmarkedMovieListFragment : BaseMovieListFragment() {
 
     override fun iniMovieList() {
         super.iniMovieList()

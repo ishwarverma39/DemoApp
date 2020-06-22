@@ -11,7 +11,7 @@ class BookmarkedActivity : AppBarActivity() {
 
     override fun initViews() {
         super.initViews()
-        val fragment = BookmarkedMovieListFragment(R.layout.fragment_movie_list)
+        val fragment = BookmarkedMovieListFragment()
         setFragment(fragment, "Movie")
         showBackButton()
     }
