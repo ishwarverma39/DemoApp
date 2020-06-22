@@ -3,4 +3,6 @@
     <string name="bookmarked_title">Bookmarks</string>
     <string name="bookmark">Bookmark</string>
     <string name="movie_detail">Movie Details</string>
+    <string name="release">Released on:&#160;</string>
+    <string name="rating">Rating:&#160;</string>
 </resources>

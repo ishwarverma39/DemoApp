@@ -11,7 +11,9 @@ class MainActivity : AppBarActivity() {
     override fun getTitleText(): String {
         return resources.getString(R.string.app_name)
     }
+
     override fun initViews() {
+        super.initViews()
         val fragment = MovieListFragment(R.layout.fragment_movie_list)
         setFragment(fragment, "Movie")
     }

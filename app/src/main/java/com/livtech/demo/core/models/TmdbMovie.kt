@@ -14,6 +14,11 @@ data class TmdbMovie(
     val title: String,
     val overview: String,
     val adult: Boolean,
+    val poster_path: String,
+    val release_date: String,
     var bookmarked: Boolean,
     var movieIdDetail: MovieIdDetail?
-) : Parcelable
+) : Parcelable {
+    val getImageUrl
+        get() = "https://image.tmdb.org/t/p/w185$poster_path"
+}

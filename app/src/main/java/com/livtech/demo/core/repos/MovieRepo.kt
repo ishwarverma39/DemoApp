@@ -9,6 +9,7 @@ import com.livtech.common.core.network.AE_404
 import com.livtech.common.core.network.ApiError
 import com.livtech.common.core.network.NetworkBoundResource
 import com.livtech.demo.core.apiservices.TmdbApi
+import com.livtech.demo.core.database.AppDatabase
 import com.livtech.demo.core.database.MovieDao
 import com.livtech.demo.core.models.MovieIdDetail
 import com.livtech.demo.core.models.TmdbMovie
@@ -25,7 +26,7 @@ class MovieRepo(val movieDao: MovieDao, val dispatcher: CoroutineDispatcher) : B
             dispatcher = dispatcher
         ) {
             override suspend fun saveApiCallResponse(response: TmdbMovieListResponse?) {
-                movieDao.insertMovies(response?.results!!)
+                deleteOldMoviesAndSaveNewMovies(response?.results)
             }
 
             override fun getRequestAsync(): Deferred<Response<TmdbMovieListResponse>> {
@@ -78,5 +79,27 @@ class MovieRepo(val movieDao: MovieDao, val dispatcher: CoroutineDispatcher) : B
 
     fun updateBookmark(tmdbMovie: TmdbMovie) {
         movieDao.updateBookmark(tmdbMovie.id, tmdbMovie.bookmarked)
+    }
+
+    private fun deleteOldMoviesAndSaveNewMovies(newMovies: MutableList<TmdbMovie>?) {
+        if (newMovies.isNullOrEmpty()) {
+            movieDao.deleteAll()
+            return
+        }
+        AppDatabase.INSTANCE?.runInTransaction {
+            val newIds = newMovies.map { it.id }
+            movieDao.deleteMoviesIfNotInIds(newIds)
+            val oldMovies = movieDao.getOldBookmarkedMeetings(true)
+            newMovies.forEach { newMovie ->
+                val oldMovie = oldMovies?.find { it.id == newMovie.id }
+                oldMovie?.let {
+                    if (it.id == newMovie.id) {
+                        newMovie.bookmarked = it.bookmarked
+                        newMovie.movieIdDetail = it.movieIdDetail
+                    }
+                }
+            }
+            movieDao.insertMovies(newMovies)
+        }
     }
 }

@@ -1,14 +1,14 @@
 package com.livtech.demo.ui.actitivities
 
-import android.os.Bundle
+import androidx.annotation.CallSuper
 import androidx.appcompat.widget.Toolbar
 import com.livtech.demo.R
 
 abstract class AppBarActivity : BaseActivity() {
-    private var toolbar: Toolbar? = null
+    open var toolbar: Toolbar? = null
 
-    override fun initOnCreate(bundle: Bundle?) {
-        super.initOnCreate(bundle)
+    @CallSuper
+    override fun initViews() {
         initToolBar()
     }
 
@@ -19,6 +19,7 @@ abstract class AppBarActivity : BaseActivity() {
     }
 
     open fun showBackButton() {
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toolbar?.let {
             it.setNavigationIcon(R.drawable.ic_action_back)
             it.setNavigationOnClickListener { onBackArrowPress() }
@@ -26,7 +27,7 @@ abstract class AppBarActivity : BaseActivity() {
     }
 
     open fun onBackArrowPress() {
-        onBackArrowPress()
+        onBackPressed()
     }
 
     abstract fun getTitleText(): String

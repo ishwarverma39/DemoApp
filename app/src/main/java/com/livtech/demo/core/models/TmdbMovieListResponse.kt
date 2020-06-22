@@ -1,5 +1,5 @@
 package com.livtech.demo.core.models
 
 data class TmdbMovieListResponse(
-    val results: MutableList<TmdbMovie>
+    val results: MutableList<TmdbMovie>?
 )

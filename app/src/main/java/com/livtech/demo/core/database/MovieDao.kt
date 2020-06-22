@@ -28,4 +28,13 @@ interface MovieDao {
     @Query("select * from movies where `id`=:id")
     fun getMovieById(id: Int): LiveData<TmdbMovie>
 
+    @Query("delete from movies where `id` not in (:ids)")
+    fun deleteMoviesIfNotInIds(ids: List<Int>)
+
+    @Query("delete from movies")
+    fun deleteAll()
+
+    @Query("select * from movies where `bookmarked` =:bookmarked")
+    fun getOldBookmarkedMeetings(bookmarked: Boolean): MutableList<TmdbMovie>?
+
 }
