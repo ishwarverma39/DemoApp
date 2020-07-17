@@ -44,7 +44,7 @@ versions.glide = "4.8.0"
 versions.json = "2.8.6"
 versions.hamcrest = "1.3"
 versions.junit = "4.12"
-versions.kotlin = "1.3.71"
+versions.kotlin = "1.3.72"
 versions.lifecycle = "2.2.0"
 versions.material = "1.0.0"
 versions.mockito = "2.25.0"
@@ -58,7 +58,7 @@ versions.paging = "2.1.1"
 versions.recyclerview = "1.0.0"
 versions.retrofit = "2.5.0"
 versions.robolectric = "4.2"
-versions.room = "2.2.3"
+versions.room = "2.2.5"
 versions.rx_android = "2.0.1"
 versions.rxjava2 = "2.1.3"
 versions.timber = "4.7.1"
@@ -149,6 +149,8 @@ kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
 kotlin.test = "org.jetbrains.kotlin:kotlin-test-junit:$versions.kotlin"
 kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
 kotlin.allopen = "org.jetbrains.kotlin:kotlin-allopen:$versions.kotlin"
+kotlin.compiler = "org.jetbrains.kotlin:kotlin-compiler-embeddable:1.3.72"
+kotlin.reflect = "org.jetbrains.kotlin:kotlin-reflect:1.3.72"
 deps.kotlin = kotlin
 
 def lifecycle = [:]
@@ -226,11 +228,11 @@ work.firebase = "androidx.work:work-firebase:$versions.work"
 work.runtime_ktx = "androidx.work:work-runtime-ktx:$versions.work"
 deps.work = work
 
-deps.coroutine_arc_nbr =  "com.github.ishwarverma39:coroutine-app-architecture-NBR:v1.0.9"
+deps.coroutine_arc_nbr =  "com.github.ishwarverma39:coroutine-app-architecture-NBR:v1.1.0"
 
 ext.deps = deps
 
-def addRepos(RepositoryHandler handler) {
+static def addRepos(RepositoryHandler handler) {
     handler.google()
     handler.jcenter()
     handler.maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }

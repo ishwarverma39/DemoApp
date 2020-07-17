@@ -1,4 +1,4 @@
-package com.livtech.demo.ui
+package com.livtech.demo.ui.utils
 
 import android.view.View
 import android.widget.ImageView
