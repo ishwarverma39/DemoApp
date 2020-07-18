@@ -2,10 +2,11 @@ package com.livtech.demo.core
 
 import android.app.Application
 import com.livtech.common.core.network.ApiClient
+import com.livtech.demo.BuildConfig
 
 class DemoApp : Application() {
     override fun onCreate() {
         super.onCreate()
-        ApiClient.initClient(AppConstants.BASE_URL, ApiAuthenticator.authInterceptor)
+        ApiClient.initClient(AppConstants.BASE_URL, AppInterceptor(BuildConfig.API_KEY))
     }
 }
