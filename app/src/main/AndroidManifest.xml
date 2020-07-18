@@ -16,8 +16,8 @@
         <activity
             android:name=".ui.actitivities.SplashActivity"
             android:hardwareAccelerated="true"
-            android:theme="@style/AppTheme.Launcher"
-            android:screenOrientation="userPortrait">
+            android:screenOrientation="userPortrait"
+            android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,6 +25,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.actitivities.LoginActivity" />
+        <activity android:name=".ui.actitivities.MainActivity" />
     </application>
 
 </manifest>

@@ -3,18 +3,17 @@ package com.livtech.demo.core
 import okhttp3.Interceptor
 import okhttp3.Response
 
-class AppInterceptor(private val apiKey: String) : Interceptor {
+class AppInterceptor() : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
-        val newUrl = chain.request().url()
-            .newBuilder()
-            .addQueryParameter(AppConstants.API_KEY, apiKey)
-            .build()
-
-        val newRequest = chain.request()
-            .newBuilder()
-            .url(newUrl)
-            .build()
-
-        return chain.proceed(newRequest)
+        val original = chain.request().newBuilder()
+        val loggedIn = PreferenceManager.getBoolean(AppConstants.IS_LOGGED_IN, false)
+        if (loggedIn) {
+            original
+                .addHeader(
+                    AppConstants.HEADER_ACCESS_TOKEN_KEY,
+                    PreferenceManager.getStringValue(AppConstants.ACCESS_TOKE_KEY) ?: ""
+                )
+        }
+        return chain.proceed(original.build())
     }
 }

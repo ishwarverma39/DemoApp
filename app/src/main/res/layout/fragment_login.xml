@@ -6,6 +6,10 @@
         <import type="com.livtech.common.core.network.NetworkStatus" />
 
         <variable
+            name="loginRequest"
+            type="com.livtech.demo.core.models.LoginRequest" />
+
+        <variable
             name="resource"
             type="com.livtech.common.core.models.Resource" />
 
@@ -29,13 +33,15 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/username"
                 android:labelFor="@+id/userNameEdt"
+                android:saveEnabled="@{resource==null || resource.status==NetworkStatus.FAILED}"
                 app:error="@{resource.message}"
                 app:errorEnabled="@{resource.status==NetworkStatus.FAILED}">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/userNameEdt"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="@={loginRequest.userName}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -45,6 +51,7 @@
                 android:layout_marginTop="32dp"
                 android:hint="@string/password"
                 android:labelFor="@+id/userNameEdt"
+                android:saveEnabled="@{resource==null || resource.status==NetworkStatus.FAILED}"
                 app:errorEnabled="@{resource.status==NetworkStatus.FAILED}"
                 app:passwordToggleEnabled="true">
 
@@ -52,7 +59,8 @@
                     android:id="@+id/passwordEdt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:text="@={loginRequest.password}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button

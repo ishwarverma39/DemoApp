@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DemoApp</string>
+    <string name="app_name">BranchDemo</string>
     <string name="google_maps_key">AIzaSyCWSein0ZPPjXCiGpbCHO0yf343SYFMNn0</string>
     <string name="username">User Name</string>
     <string name="password">Password</string>
