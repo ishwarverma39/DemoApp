@@ -108,4 +108,5 @@ dependencies {
     testImplementation "androidx.room:room-testing:$room_version"
     kapt "android.arch.persistence.room:compiler:1.1.1"
     implementation "android.arch.persistence.room:runtime:1.1.1."
+    implementation 'joda-time:joda-time:2.10.5'
 }

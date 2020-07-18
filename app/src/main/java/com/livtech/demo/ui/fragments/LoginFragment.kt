@@ -40,6 +40,7 @@ class LoginFragment : ViewDataBindingBaseFragment<FragmentLoginBinding>() {
             viewDataBinding.resource = it
             if (it.status == NetworkStatus.SUCCESS) {
                 PreferenceManager.saveBoolValue(AppConstants.IS_LOGGED_IN, true)
+                PreferenceManager.saveStringValue(AppConstants.ACCESS_TOKE_KEY, it.data?.auth_token)
                 startActivity(Intent(context, MainActivity::class.java))
                 activity?.finish()
             }
