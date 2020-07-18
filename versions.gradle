@@ -228,7 +228,7 @@ work.firebase = "androidx.work:work-firebase:$versions.work"
 work.runtime_ktx = "androidx.work:work-runtime-ktx:$versions.work"
 deps.work = work
 
-deps.coroutine_arc_nbr =  "com.github.ishwarverma39:coroutine-app-architecture-NBR:v1.1.0"
+deps.coroutine_arc_nbr =  "com.github.ishwarverma39:coroutine-app-architecture-NBR:v1.1.1"
 
 ext.deps = deps
 
