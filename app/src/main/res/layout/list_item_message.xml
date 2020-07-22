@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="message"
+            type="com.livtech.demo.core.models.BranchMessage" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:paddingTop="16dp">
+
+        <TextView
+            android:id="@+id/bodyText"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_message"
+            android:lineSpacingExtra="4dp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:text="@{message.body}"
+            app:layout_constraintStart_toEndOf="@+id/senderText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="sorry for that but i am still  searching for the money but will be paying the loan soon as the deadline i had set passed but i am doing all i can to settle the loan" />
+
+        <TextView
+            android:id="@+id/senderText"
+            style="@style/TextAppearance.AppCompat.Subhead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{message.sender}"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bodyText"
+            tools:text="SenderId:" />
+
+
+        <TextView
+            android:id="@+id/timeText"
+            style="@style/TextAppearance.AppCompat.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@{message.messageTime}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/senderText"
+            tools:text="12:00 AM, Fri, 12 Jul" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

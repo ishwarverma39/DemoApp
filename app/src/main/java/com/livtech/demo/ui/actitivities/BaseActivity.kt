@@ -1,6 +1,7 @@
 package com.livtech.demo.ui.actitivities
 
 import android.os.Bundle
+import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 
@@ -11,7 +12,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseActivityLifeCycle {
         setContentView(getLayout())
         initOnCreate(savedInstanceState)
     }
-
+    @CallSuper
     override fun initOnCreate(savedInstanceState: Bundle?) {
         initViews()
     }

@@ -26,6 +26,7 @@
         </activity>
         <activity android:name=".ui.actitivities.LoginActivity" />
         <activity android:name=".ui.actitivities.MainActivity" />
+        <activity android:name=".ui.actitivities.MessagesActivity" />
     </application>
 
 </manifest>

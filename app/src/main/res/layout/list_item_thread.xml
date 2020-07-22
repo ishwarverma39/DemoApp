@@ -16,20 +16,34 @@
         android:paddingTop="16dp">
 
         <TextView
-            android:id="@+id/userNameText"
+            android:id="@+id/threadIdText"
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{message.senderOrReceiver}"
+            android:text="@{String.valueOf(message.threadId)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="UserID" />
+            tools:text="Thread Id" />
+
+        <TextView
+            android:id="@+id/senderText"
+            style="@style/TextAppearance.AppCompat.Subhead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{message.sender}"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/threadIdText"
+            tools:text="SenderId:" />
 
         <TextView
             android:id="@+id/bodyText"
-            style="@style/TextAppearance.AppCompat.Subhead"
+            style="@style/TextAppearance.AppCompat.Small"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:ellipsize="end"
@@ -38,8 +52,8 @@
             android:text="@{message.body}"
             android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/dateText"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userNameText"
+            app:layout_constraintStart_toEndOf="@+id/senderText"
+            app:layout_constraintTop_toBottomOf="@+id/threadIdText"
             tools:text="Message" />
 
         <TextView
@@ -52,7 +66,7 @@
             android:singleLine="true"
             android:text="@{message.messageTime}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/userNameText"
+            app:layout_constraintTop_toTopOf="@id/threadIdText"
             tools:text="12:00 AM" />
 
         <TextView

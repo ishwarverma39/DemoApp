@@ -1,7 +1,7 @@
 package com.livtech.demo.ui.actitivities
 
 import com.livtech.demo.R
-import com.livtech.demo.ui.fragments.MessageThreadListFragment
+import com.livtech.demo.ui.fragments.ThreadListFragment
 
 class MainActivity : AppBarActivity() {
 
@@ -11,7 +11,7 @@ class MainActivity : AppBarActivity() {
 
     override fun initViews() {
         super.initViews()
-        val fragment = MessageThreadListFragment()
+        val fragment = ThreadListFragment()
         setFragment(fragment = fragment, tag = "MESSAGES")
     }
 }

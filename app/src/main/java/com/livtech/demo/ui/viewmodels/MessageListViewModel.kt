@@ -6,12 +6,12 @@ import androidx.lifecycle.switchMap
 import com.livtech.demo.core.repos.MessagesRepo
 
 class MessageListViewModel : ViewModel() {
-    private val _fetchMessages = MutableLiveData<Boolean>()
-    val messages = _fetchMessages.switchMap {
-        MessagesRepo.getMessage()
+    private val _fetchMessage = MutableLiveData<Int>()
+    val messages = _fetchMessage.switchMap {
+        MessagesRepo.getMessagesByThreadId(it)
     }
 
-    fun fetchMessages() {
-        _fetchMessages.value = true
+    fun fetchMessages(threadId: Int) {
+        _fetchMessage.value = threadId
     }
 }

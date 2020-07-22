@@ -4,4 +4,6 @@
     <string name="username">User Name</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+    <string name="type_here">Type here</string>
+    <string name="send">Send</string>
 </resources>
