@@ -19,26 +19,19 @@
             android:id="@+id/recycleView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/divider"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/messageEdt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <View
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@android:color/darker_gray"
-            app:layout_constraintBottom_toTopOf="@+id/messageEdt"
-            app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/messageEdt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:background="@android:color/white"
+            android:layout_margin="16dp"
+            android:background="@drawable/background_message_edit"
             android:enabled="@{resource == null || resource.status != NetworkStatus.LOADING}"
             android:gravity="top"
             android:hint="@string/type_here"
@@ -47,15 +40,18 @@
             android:paddingVertical="8dp"
             android:scrollbars="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/sendButton"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/sendButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorPrimaryDark"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/background_send"
             android:text="@string/send"
+            android:textAllCaps="false"
             android:textColor="@color/background"
             app:hideShowView="@{resource == null || resource.status != NetworkStatus.LOADING}"
             app:layout_constraintBottom_toBottomOf="parent"

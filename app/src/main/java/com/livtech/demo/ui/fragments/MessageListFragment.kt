@@ -33,6 +33,8 @@ class MessageListFragment : ViewDataBindingBaseFragment<FragmentMessagesBinding>
 
     override fun initViews(view: View, savedInstanceState: Bundle?) {
         initMessageList()
+        initScroll()
+        scrollBottom()
     }
 
     private fun initMessageList() {
@@ -42,6 +44,21 @@ class MessageListFragment : ViewDataBindingBaseFragment<FragmentMessagesBinding>
             adapter?.submitList(it.data)
         })
         messageListViewModel?.fetchMessages(threadId)
+        recycleView.layoutManager
+    }
+
+    private fun initScroll() {
+        recycleView.addOnLayoutChangeListener { v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom
+            -> if (bottom < oldBottom) scrollBottom()
+        }
+    }
+
+    private fun scrollBottom() {
+        recycleView.layoutManager?.smoothScrollToPosition(
+            recycleView,
+            null,
+            adapter?.itemCount ?: 0
+        )
     }
 
     private fun onItemClick(message: BranchMessage, position: Int) {

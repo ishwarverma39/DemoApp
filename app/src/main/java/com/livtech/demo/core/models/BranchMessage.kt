@@ -23,7 +23,7 @@ data class BranchMessage(
 
     val messageDate: String
         get() {
-            val dateFormat = DateTimeFormat.forPattern("EEE, d, MMM")
+            val dateFormat = DateTimeFormat.forPattern("EEE d, MMM")
             return dateFormat.print(serverDateFormat.parseDateTime(timestamp))
         }
 
@@ -36,5 +36,5 @@ data class BranchMessage(
         get() = "$messageTime, $messageDate"
 
     val sender: String?
-        get() = if (agentId.isNullOrEmpty()) "$userId:" else "$agentId:"
+        get() = if (agentId.isNullOrEmpty()) "By: $userId" else "By: $agentId"
 }

@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:paddingTop="16dp">
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp">
 
         <TextView
             android:id="@+id/bodyText"
@@ -21,7 +22,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/background_message"
-            android:lineSpacingExtra="4dp"
+            android:lineSpacingExtra="2dp"
             android:paddingHorizontal="16dp"
             android:paddingVertical="8dp"
             android:text="@{message.body}"
@@ -32,7 +33,7 @@
 
         <TextView
             android:id="@+id/senderText"
-            style="@style/TextAppearance.AppCompat.Subhead"
+            style="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -51,7 +52,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:singleLine="true"
-            android:text="@{message.messageTime}"
+            android:text="@{message.dateAndTime}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/senderText"
             tools:text="12:00 AM, Fri, 12 Jul" />

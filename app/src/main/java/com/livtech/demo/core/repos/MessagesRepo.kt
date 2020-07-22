@@ -20,12 +20,13 @@ object MessagesRepo : BaseRepo() {
                 var res = resource
                 if (res.status == NetworkStatus.SUCCESS) {
                     messages = res.data
-                    val threadList = mutableListOf<BranchMessage>()
-                    res.data?.groupBy { it.threadId }?.forEach {
-                        threadList.add(it.value.sortedByDescending { message -> message.timestamp }[0])
-                    }
-                    res = Resource.Success(threadList.sortedByDescending { it.timestamp })
                 }
+                val threadList = mutableListOf<BranchMessage>()
+                messages?.groupBy { it.threadId }?.forEach {
+                    threadList.add(it.value.sortedByDescending { message -> message.timestamp }[0])
+                }
+                if (threadList.isNotEmpty()) res =
+                    Resource.Success(threadList.sortedByDescending { it.timestamp })
                 emit(res)
             }
         }

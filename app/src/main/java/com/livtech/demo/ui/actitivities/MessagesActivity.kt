@@ -18,6 +18,7 @@ class MessagesActivity : AppBarActivity() {
 
     override fun initViews() {
         super.initViews()
+        showBackButton()
         val fragment = MessageListFragment().apply { arguments = intent.extras }
         setFragment(fragment = fragment, tag = "MESSAGES")
     }
