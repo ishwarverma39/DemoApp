@@ -14,4 +14,7 @@ interface ApiServices {
 
     @GET("messages")
     fun getMessagesAsync(): Deferred<Response<List<BranchMessage>>>
+
+    @POST("messages")
+    fun sendMessageAync(@QueryMap body: HashMap<String, Any>): Deferred<Response<BranchMessage>>
 }

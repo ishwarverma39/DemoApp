@@ -14,12 +14,12 @@ data class BranchMessage(
     @SerializedName("thread_id")
     var threadId: Int,
     @SerializedName("timestamp")
-    var timestamp: String, //"2020-07-17T10:31:55.698Z"
+    var timestamp: String, //"2020-07-17T10:31:55.698Z", 2020-07-22T18:38:18.547Z
     @SerializedName("user_id")
     var userId: String
 ) {
-    val serverDateFormat
-        get() = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss.000'Z'")
+    private val serverDateFormat
+        get() = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
 
     val messageDate: String
         get() {

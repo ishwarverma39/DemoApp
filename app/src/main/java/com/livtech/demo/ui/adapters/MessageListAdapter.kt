@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.DiffUtil
 import com.livtech.demo.R
 import com.livtech.demo.core.models.BranchMessage
 import com.livtech.demo.databinding.ListItemMessageBinding
-import com.livtech.demo.databinding.ListItemThreadBinding
 
 class MessageListAdapter(private val onItemClick: (BranchMessage, Int) -> Unit) :
     DataBoundListAdapter<BranchMessage, ListItemMessageBinding>(
@@ -36,5 +35,12 @@ class MessageListAdapter(private val onItemClick: (BranchMessage, Int) -> Unit) 
     override fun bind(binding: ListItemMessageBinding, item: BranchMessage, position: Int) {
         binding.message = item
         binding.root.setOnClickListener { onItemClick.invoke(item, position) }
+    }
+
+    fun addMessageToList(message: BranchMessage?) {
+        message?.let {
+            currentList.add(message)
+            notifyItemInserted(itemCount - 1)
+        }
     }
 }
